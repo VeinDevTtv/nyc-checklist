@@ -7,6 +7,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { Footer } from '@/components/Footer';
 import { 
   Building, 
   Camera, 
@@ -287,6 +288,9 @@ export default function NYCTripChecklist() {
           ))}
         </Tabs>
       </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 } 

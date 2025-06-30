@@ -85,7 +85,8 @@ src/
 ├── components/
 │   ├── ui/                  # ShadCN UI components
 │   ├── NYCTripChecklist.tsx # Main checklist component
-│   └── ThemeToggle.tsx      # Theme switcher component
+│   ├── ThemeToggle.tsx      # Theme switcher component
+│   └── Footer.tsx           # Footer with attribution and GitHub link
 ├── hooks/
 │   └── useTheme.ts          # Custom theme management hook
 └── lib/
@@ -117,6 +118,7 @@ The main component featuring:
 - `Checkbox`: For individual checklist items
 - `Badge`: For progress indicators
 - `Button`: For actions like reset and theme toggle
+- `Footer`: Attribution footer with GitHub link and project info
 
 ## 🔧 Customization
 
