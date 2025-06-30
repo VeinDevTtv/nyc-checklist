@@ -47,7 +47,7 @@ A beautiful, interactive checklist for planning your New York City trip, built w
 
 1. Clone the repository:
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/VeinDevTtv/nyc-checklist
 cd nyc-checklist
 ```
 
