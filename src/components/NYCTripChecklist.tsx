@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   Building, 
   Camera, 
@@ -174,97 +175,118 @@ export default function NYCTripChecklist() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
-          🗽 NYC Trip Checklist
-        </h1>
-        <p className="text-lg text-gray-600 mb-4">
-          Your ultimate guide to exploring the Big Apple
-        </p>
-        <div className="flex items-center justify-center gap-4 flex-wrap">
-          <Badge variant="secondary" className="text-sm">
+    <div className="min-h-screen bg-background transition-colors duration-300">
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
+        {/* Header with Theme Toggle */}
+        <div className="flex justify-between items-start mb-6 sm:mb-8">
+          <div className="flex-1">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 leading-tight">
+              🗽 NYC Trip Checklist
+            </h1>
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground">
+              Your ultimate guide to exploring the Big Apple
+            </p>
+          </div>
+          <div className="ml-4 flex-shrink-0">
+            <ThemeToggle />
+          </div>
+        </div>
+
+        {/* Progress Summary */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <Badge variant="secondary" className="text-xs sm:text-sm px-3 py-1.5">
             {getTotalCheckedCount()} / {getTotalItemsCount()} completed
           </Badge>
           <Button 
             variant="outline" 
             size="sm" 
             onClick={resetAllItems}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 transition-all duration-200 hover:scale-105"
           >
             <RotateCcw className="w-4 h-4" />
-            Reset All
+            <span className="text-xs sm:text-sm">Reset All</span>
           </Button>
         </div>
-      </div>
 
-      <Tabs defaultValue="attractions" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 mb-6">
-          {CHECKLIST_DATA.map((section) => (
-            <TabsTrigger 
-              key={section.id} 
-              value={section.id}
-              className="text-xs sm:text-sm flex flex-col sm:flex-row items-center gap-1 p-2"
-            >
-              {section.icon}
-              <span className="hidden sm:inline">{section.title.split(' ')[0]}</span>
-              <span className="sm:hidden">{section.title.split(' ')[0].slice(0, 4)}</span>
-              <Badge variant="secondary" className="text-xs">
-                {getCheckedCount(section.id)}
-              </Badge>
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
-        {CHECKLIST_DATA.map((section) => (
-          <TabsContent key={section.id} value={section.id}>
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl sm:text-2xl">
+        {/* Tabs */}
+        <Tabs defaultValue="attractions" className="w-full">
+          {/* Mobile-optimized Tab List */}
+          <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 mb-4 sm:mb-6 h-auto">
+            {CHECKLIST_DATA.map((section) => (
+              <TabsTrigger 
+                key={section.id} 
+                value={section.id}
+                className="text-xs sm:text-sm flex flex-col gap-1 p-2 sm:p-3 h-auto min-h-[60px] sm:min-h-[70px] data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                <div className="flex items-center gap-1">
                   {section.icon}
-                  {section.title}
-                  <Badge variant="outline">
-                    {getCheckedCount(section.id)} / {section.items.length}
-                  </Badge>
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {section.description}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-3 sm:gap-4">
-                  {section.items.map((item) => (
-                    <div 
-                      key={item.id}
-                      className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <Checkbox
-                        id={item.id}
-                        checked={checkedItems[item.id] || false}
-                        onCheckedChange={() => handleItemToggle(item.id)}
-                        className="flex-shrink-0"
-                      />
-                      <div className="flex items-center gap-2 flex-grow">
-                        {item.icon}
-                        <label 
-                          htmlFor={item.id}
-                          className={`text-sm sm:text-base cursor-pointer transition-colors ${
-                            checkedItems[item.id] 
-                              ? 'text-gray-500 line-through' 
-                              : 'text-gray-900'
-                          }`}
-                        >
-                          {item.text}
-                        </label>
-                      </div>
-                    </div>
-                  ))}
+                  <span className="hidden sm:inline">{section.title.split(' ')[0]}</span>
+                  <span className="sm:hidden text-[10px] leading-tight text-center">
+                    {section.title.split(' ')[0].slice(0, 5)}
+                  </span>
                 </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        ))}
-      </Tabs>
+                <Badge variant="secondary" className="text-[10px] sm:text-xs h-5 px-1.5">
+                  {getCheckedCount(section.id)}
+                </Badge>
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          {/* Tab Content */}
+          {CHECKLIST_DATA.map((section) => (
+            <TabsContent key={section.id} value={section.id} className="mt-0">
+              <Card className="border-border bg-card shadow-sm">
+                <CardHeader className="pb-4 sm:pb-6">
+                  <CardTitle className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-lg sm:text-xl lg:text-2xl text-card-foreground">
+                    <div className="flex items-center gap-2">
+                      {section.icon}
+                      <span>{section.title}</span>
+                    </div>
+                    <Badge variant="outline" className="self-start sm:self-auto text-xs">
+                      {getCheckedCount(section.id)} / {section.items.length}
+                    </Badge>
+                  </CardTitle>
+                  <CardDescription className="text-sm sm:text-base text-muted-foreground">
+                    {section.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-2 sm:gap-3">
+                    {section.items.map((item) => (
+                      <div 
+                        key={item.id}
+                        className="flex items-center space-x-3 p-2.5 sm:p-3 rounded-lg hover:bg-muted/50 transition-all duration-200 border border-transparent hover:border-border/50"
+                      >
+                        <Checkbox
+                          id={item.id}
+                          checked={checkedItems[item.id] || false}
+                          onCheckedChange={() => handleItemToggle(item.id)}
+                          className="flex-shrink-0"
+                        />
+                        <div className="flex items-center gap-2 flex-grow min-w-0">
+                          <div className="flex-shrink-0">
+                            {item.icon}
+                          </div>
+                          <label 
+                            htmlFor={item.id}
+                            className={`text-sm sm:text-base cursor-pointer transition-all duration-200 flex-grow ${
+                              checkedItems[item.id] 
+                                ? 'text-muted-foreground line-through opacity-70' 
+                                : 'text-foreground hover:text-primary'
+                            }`}
+                          >
+                            {item.text}
+                          </label>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </div>
     </div>
   );
 } 

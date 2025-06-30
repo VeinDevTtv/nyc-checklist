@@ -13,6 +13,9 @@ A beautiful, interactive checklist for planning your New York City trip, built w
 - **Essentials to Pack**: Everything you need for your trip
 
 ### 🎨 Modern UI/UX
+- **Dark Mode by Default**: Beautiful dark theme that's easy on the eyes, with light mode toggle
+- **Theme Persistence**: Your theme preference is saved and restored across sessions
+- **System Theme Detection**: Automatically respects your device's color scheme preference
 - Clean, minimalist design using ShadCN UI components
 - Responsive layout that works on mobile and desktop
 - Tabbed interface for easy navigation between sections
@@ -21,14 +24,18 @@ A beautiful, interactive checklist for planning your New York City trip, built w
 
 ### 💾 Smart Features
 - **Local Storage**: Your progress is automatically saved and persists across browser sessions
+- **Theme Storage**: Your dark/light mode preference is remembered
 - **Progress Tracking**: See how many items you've completed per section and overall
 - **Reset Functionality**: Clear all selections with one click
 - **Visual Feedback**: Checked items are struck through and grayed out
+- **Accessible Design**: High contrast ratios and keyboard navigation support
 
 ### 📱 Mobile-First Design
-- Responsive grid layout adapts to different screen sizes
-- Touch-friendly checkboxes and buttons
-- Optimized typography and spacing for readability
+- **Ultra-Responsive**: Optimized for phones, tablets, and all screen sizes
+- **Touch-Friendly**: Large touch targets and gesture-friendly interactions
+- **Smart Layout**: 2-column tabs on mobile, expanding to 6 columns on desktop
+- **Adaptive Text**: Font sizes and spacing adjust based on screen size
+- **Optimized Performance**: Smooth scrolling and transitions on all devices
 
 ## 🚀 Getting Started
 
@@ -59,23 +66,28 @@ npm run dev
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js 15 with App Router
-- **UI Components**: ShadCN UI
-- **Styling**: Tailwind CSS
+- **UI Components**: ShadCN UI with dark mode support
+- **Styling**: Tailwind CSS with CSS variables for theming
 - **Icons**: Lucide React
 - **Language**: TypeScript
 - **State Management**: React useState with localStorage persistence
+- **Theming**: Custom hook with system preference detection and persistence
+- **Responsive Design**: Mobile-first approach with breakpoint optimization
 
 ## 📁 Project Structure
 
 ```
 src/
 ├── app/
-│   ├── globals.css          # Global styles
+│   ├── globals.css          # Global styles with dark mode support
 │   ├── layout.tsx           # Root layout
 │   └── page.tsx             # Main page
 ├── components/
 │   ├── ui/                  # ShadCN UI components
-│   └── NYCTripChecklist.tsx # Main checklist component
+│   ├── NYCTripChecklist.tsx # Main checklist component
+│   └── ThemeToggle.tsx      # Theme switcher component
+├── hooks/
+│   └── useTheme.ts          # Custom theme management hook
 └── lib/
     └── utils.ts             # Utility functions
 ```
@@ -84,18 +96,27 @@ src/
 
 ### NYCTripChecklist.tsx
 The main component featuring:
+- **Theme-Aware Design**: Automatically adapts to dark/light mode
+- **Enhanced Mobile Layout**: Optimized grid system for all screen sizes
 - Section-based organization with tabs
 - Individual item tracking with checkboxes
 - Progress counters and badges
 - Local storage integration
 - Reset functionality
 
+### Theme System
+- `useTheme.ts`: Custom hook for theme management
+- `ThemeToggle.tsx`: Beautiful theme switcher component
+- **CSS Variables**: Seamless color transitions between themes
+- **System Detection**: Respects user's OS theme preference
+- **Persistence**: Remembers your theme choice
+
 ### UI Components
-- `Card`: For section containers
-- `Tabs`: For navigation between sections
+- `Card`: For section containers with theme-aware styling
+- `Tabs`: For navigation between sections with mobile optimization
 - `Checkbox`: For individual checklist items
 - `Badge`: For progress indicators
-- `Button`: For actions like reset
+- `Button`: For actions like reset and theme toggle
 
 ## 🔧 Customization
 
