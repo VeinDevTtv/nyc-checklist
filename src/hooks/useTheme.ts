@@ -14,7 +14,6 @@ export function useTheme() {
       setTheme(savedTheme);
     } else {
       // Check system preference, but default to dark if no preference
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
       
       if (systemPrefersLight) {
