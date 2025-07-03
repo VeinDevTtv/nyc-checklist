@@ -21,7 +21,8 @@ import {
   Target,
   Zap,
   Star,
-  CheckCircle2
+  CheckCircle2,
+  ShoppingBag
 } from 'lucide-react';
 
 interface ChecklistItem {
@@ -120,6 +121,20 @@ const CHECKLIST_DATA: ChecklistSection[] = [
       { id: 'jazz', text: 'Jazz Club in Harlem', icon: <Sparkles className="w-4 h-4" /> },
       { id: 'speakeasy', text: 'Hidden Speakeasy Bar', icon: <Sparkles className="w-4 h-4" /> },
       { id: 'coney-island', text: 'Coney Island & Brighton Beach', icon: <Sparkles className="w-4 h-4" /> },
+    ]
+  },
+  {
+    id: 'shopping',
+    title: 'Shopping Destinations',
+    description: 'Premier shopping centers and retail destinations',
+    icon: <ShoppingBag className="w-4 h-4" />,
+    color: 'from-pink-500 to-rose-600',
+    items: [
+      { id: 'westfield-wtc', text: 'Westfield World Trade Center (The Oculus)', icon: <ShoppingBag className="w-4 h-4" /> },
+      { id: 'brookfield-place', text: 'Brookfield Place', icon: <ShoppingBag className="w-4 h-4" /> },
+      { id: 'fulton-center', text: 'Fulton Center Mall', icon: <ShoppingBag className="w-4 h-4" /> },
+      { id: 'woodbury-common', text: 'Woodbury Common Premium Outlets', icon: <ShoppingBag className="w-4 h-4" /> },
+      { id: 'empire-outlets', text: 'Empire Outlets (Staten Island)', icon: <ShoppingBag className="w-4 h-4" /> },
     ]
   },
   {
