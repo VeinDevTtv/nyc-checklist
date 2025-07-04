@@ -385,9 +385,12 @@ export class TripOptimizationEngine {
 
     while (queue.length > 0) {
       // Find unvisited node with minimum distance
-      let current = queue.reduce((min, node) => 
-        !visited.has(node) && distances.get(node)! < distances.get(min)! ? node : min
-      );
+      let current = queue[0];
+      for (const node of queue) {
+        if (!visited.has(node) && distances.get(node)! < distances.get(current)!) {
+          current = node;
+        }
+      }
 
       if (current === endId) break;
 
@@ -446,7 +449,11 @@ export class TripOptimizationEngine {
     afternoon: string[];
     evening: string[];
   } {
-    const timeSlots = { morning: [], afternoon: [], evening: [] };
+    const timeSlots: { morning: string[]; afternoon: string[]; evening: string[] } = { 
+      morning: [], 
+      afternoon: [], 
+      evening: [] 
+    };
     
     places.forEach(placeId => {
       const node = this.graph.get(placeId)!;
