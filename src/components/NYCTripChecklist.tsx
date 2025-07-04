@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { Footer } from '@/components/Footer';
+import AITripAdvisor from '@/components/AITripAdvisor';
 import { 
   Building, 
   Camera, 
@@ -417,6 +418,9 @@ export default function NYCTripChecklist() {
           </div>
         )}
       </div>
+      
+      {/* AI Trip Advisor Section */}
+      <AITripAdvisor checkedItems={checkedItems} />
       
       <Footer />
     </div>
